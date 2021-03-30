@@ -10,4 +10,10 @@ class Transaction:
         self.who = who
 
     def __repr__(self):
-        return "%s, %s, %s" % (self.trade_time, self.price, self.who)
+        return "%s" % (self.price)
+
+    def __eq__(self, other):
+        return self.trade_id == other.trade_id
+
+    def __hash__(self):
+        return int(self.trade_id)

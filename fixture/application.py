@@ -2,6 +2,7 @@ from selenium import webdriver
 
 from fixture.navigation import NavigationHelper
 from fixture.session import SessionHelper
+from fixture.transaction import TransactionHelper
 
 
 class Application:
@@ -13,9 +14,11 @@ class Application:
         else:
             raise ValueError("Unrecognized browser %s" % browser)
         self.base_url = base_url
-        self.wd.implicitly_wait(3)
+        self.wd.implicitly_wait(60)
         self.session = SessionHelper(self)
         self.navigation = NavigationHelper(self)
+        self.transaction = TransactionHelper(self)
+
 
     def destroy(self):
         self.wd.quit()
